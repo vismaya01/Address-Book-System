@@ -10,10 +10,10 @@ class PersonInfo {
 
         //Standard setters
 
-        public void setFirstName (String firstName){
+        public void setFirstName (String firstName) {
                 this.firstName = firstName;
         }
-        public void setLastName (String lastName){
+        public void setLastName (String lastName) {
                 this.lastName = lastName;
         }
 
