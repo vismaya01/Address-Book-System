@@ -51,6 +51,13 @@ public class AddressBook {
 		System.out.println(person);
 	}
 
+	//delete person
+	public void  deletePerson (String firstName, String lastName) {
+		if (firstName.equals (person.getFirstName()) && lastName.equals (person.getLastName())) {
+			person = null;
+		}
+		System.out.println("Contact deleted successfully\n");
+	}
 
 	public static void main(String[] args) {
 		System.out.println("Welcome to Address Book");
@@ -64,6 +71,11 @@ public class AddressBook {
 		firstName=input.next();
 		lastName=input.next();
 		address.editPerson(firstName,lastName);
+
+		System.out.print("Enter first and last name of the person to delete the contact: ");
+		firstName=input.next();
+		lastName=input.next();
+                address.deletePerson(firstName,lastName);
 	}
 }
 
