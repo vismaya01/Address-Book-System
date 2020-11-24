@@ -6,10 +6,9 @@ class PersonInfo {
         public String state;
         public String zip;
         public String phoneNumber;
-	public String email;
+        public String email;
 
         //Standard setters
-
         public void setFirstName (String firstName) {
                 this.firstName = firstName;
         }
@@ -32,12 +31,11 @@ class PersonInfo {
         public void setPhoneNumber (String phoneNumber) {
                 this.phoneNumber = phoneNumber;
         }
-	public void setEmail (String email) {
-		this.email = email;
-	}
+        public void setEmail (String email) {
+        	this.email = email;
+        }
 
         //Standard getters
-
         public String getFirstName() {
                 return this.firstName;
         }
@@ -59,12 +57,11 @@ class PersonInfo {
         public String getPhoneNumber() {
                 return this.phoneNumber;
         }
-	public String getEmail() {
-		return this.email;
+        public String getEmail() {
+        		return this.email;
 	}
 
         //parameterized constructor
-
         public PersonInfo (String firstName, String lastName, String address, String city, String state, String zip, String phoneNumber, String email) {
                 setFirstName(firstName);
                 setLastName(lastName);
@@ -73,11 +70,10 @@ class PersonInfo {
                 setState(state);
                 setZip(zip);
                 setPhoneNumber(phoneNumber);
- 		setEmail(email);
+                setEmail(email);
       }
 
         //method for displaying person record
-
         public String toString() {
                 return "[ Name : " + this.firstName + " " + this.lastName +
                                 "\nAddress : " + this.address +
