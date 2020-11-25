@@ -5,26 +5,29 @@ import java.util.Iterator;
 import java.util.Map;
 
 public class AddressBook {
-
 	Scanner scanner = new Scanner (System.in);
 	ArrayList<PersonInfo> contact;
 	Map<String,AddressBook> addressBook;
+	Map<String,String> personCity;
+	Map<String,String> personState;
 
 	//constructor
 	public AddressBook() {
-		contact=new ArrayList<PersonInfo>();
+		contact = new ArrayList<PersonInfo>();
 		addressBook = new HashMap<String,AddressBook>();
+		personCity = new HashMap<String, String>();
+		personState = new HashMap<String, String>();
 	}
 
 	// add new person
 	public void addPerson(AddressBook book) {
-		System.out.print("Enter first name: ");
+		System.out.println("Enter first name: ");
 		String firstName = scanner.next();
 		System.out.println("Enter the Last name: ");
 		String lastName = scanner.next();
-		System.out.print("Enter complete address: ");
+		System.out.println("Enter complete address: ");
 		String address = scanner.next();
-		System.out.print("Enter city: ");
+		System.out.println("Enter city: ");
 		String city = scanner.next();
 		System.out.println("Enter state: ");
 		String state = scanner.next();
@@ -54,9 +57,9 @@ public class AddressBook {
 		for(int i=0 ; i< contact.size() ;i++ ) {
                 PersonInfo person = (PersonInfo)contact.get(i);
 	            if (firstName.equals (person.getFirstName()) && lastName.equals (person.getLastName())) {
-	            	System.out.print("Enter address: ");
+	            	System.out.println("Enter address: ");
 	            	String address = scanner.next();
-	            	System.out.print("Enter city: ");
+	            	System.out.println("Enter city: ");
 	            	String city = scanner.next();
 	            	System.out.println("Enter state: ");
 	            	String state = scanner.next();
@@ -101,6 +104,34 @@ public class AddressBook {
 		}
 	}
 	
+	public void viewPerson() {
+		System.out.println("Enter the option");
+		System.out.println("1.city");
+		System.out.println("2.state");
+		int choice = scanner.nextInt();
+		Iterator<PersonInfo> itr = contact.iterator();
+		while(itr.hasNext()) {
+				PersonInfo person = itr.next();
+	            personCity.put(person.getFirstName(), person.getCity());
+	            personState.put(person.getFirstName(), person.getState());
+		}
+		switch(choice) {
+			case 1:
+				for(Map.Entry m : personCity.entrySet()) {
+					System.out.println(m.getValue()+" "+m.getKey());
+				}
+				break;
+			case 2:
+				for(Map.Entry m : personState.entrySet()) {
+					System.out.println(m.getValue()+" "+m.getKey());
+				}
+				break;
+			default:
+				System.out.println("enter a valid option");
+				break;
+		}
+	}
+	
 	public void UserInput(AddressBook book) {
 		String firstName, lastName, city, state ;
 
@@ -109,10 +140,11 @@ public class AddressBook {
 			System.out.println("1. Add a person");
 			System.out.println("2. Edit information");
 			System.out.println("3. Delete a person");
-			System.out.println("4. Search person");
-			System.out.println("5. Quit");
+			System.out.println("4. Disply person");
+			System.out.println("5. view peron by city or state");
+			System.out.println("6. Quit");
 			int choice = scanner.nextInt();
-
+			
 			System.out.println("Enter name of Address Book");
 		    String addressBookName = scanner.next();
 			addressBook.put(addressBookName, book);
@@ -131,7 +163,7 @@ public class AddressBook {
 				System.out.print("Enter first and last name of the person to delete the contact: ");
 				firstName = scanner.next();
 				lastName = scanner.next();
-   	            addressBook.get(addressBookName).deletePerson(firstName,lastName);
+				addressBook.get(addressBookName).deletePerson(firstName,lastName);
 				break;
 			case 4:
 				System.out.print("Enter first and last name of the person to delete the contact: ");
@@ -140,6 +172,9 @@ public class AddressBook {
 				searchPerson(city,state);
 				break;
 			case 5:
+				viewPerson();
+				break;
+			case 6:
 				System.exit(0);
 			default:
 				System.out.println("Enter a valid option");

@@ -73,7 +73,9 @@ class PersonInfo {
                 setEmail(email);
       }
 
-        //method for displaying person record
+        public PersonInfo() {
+		}
+		//method for displaying person record
         public String toString() {
                 return "[ Name : " + this.firstName + " " + this.lastName +
                                 "\nAddress : " + this.address +
