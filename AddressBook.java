@@ -88,46 +88,64 @@ public class AddressBook {
 		}
 	}
 	
+	//search person
+	public void searchPerson(String city,String state) {
+		Iterator<PersonInfo> itr = contact.iterator();
+		for(Map.Entry m : addressBook.entrySet()) {
+			while(itr.hasNext()) {
+				PersonInfo person = itr.next();
+	            if (city.equals(person.getCity()) || state.equals (person.getState())) {
+	            	System.out.println(person);
+	            }
+			}
+		}
+	}
+	
 	public void UserInput(AddressBook book) {
-		String firstName, lastName ;
+		String firstName, lastName, city, state ;
 
 		while(true){
-			System.out.println("Enter name of Address Book");
-		    String addressBookName = scanner.next();
-
-			addressBook.put(addressBookName, book);
-
 			System.out.println("Select an action..");
 			System.out.println("1. Add a person");
 			System.out.println("2. Edit information");
 			System.out.println("3. Delete a person");
-			System.out.println("4. Quit");
-
+			System.out.println("4. Search person");
+			System.out.println("5. Quit");
 			int choice = scanner.nextInt();
-				switch(choice) {
-				case 1:
-					addressBook.get(addressBookName).addPerson(book);
-					break;
-				case 2:
-					System.out.print("Enter first name and last name of the person to edit the contact: ");
-					firstName = scanner.next();
-					lastName = scanner.next();
-					addressBook.get(addressBookName).editPerson(firstName,lastName);
-					break;
-				case 3:
-					System.out.print("Enter first and last name of the person to delete the contact: ");
-					firstName = scanner.next();
-					lastName = scanner.next();
-   	                addressBook.get(addressBookName).deletePerson(firstName,lastName);
-					break;
-				case 4:
-					System.exit(0);
-				default:
-					System.out.println("Enter a valid option");
-					break;
-				}
-		}
 
+			System.out.println("Enter name of Address Book");
+		    String addressBookName = scanner.next();
+			addressBook.put(addressBookName, book);
+			
+			switch(choice) {
+			case 1:
+				addressBook.get(addressBookName).addPerson(book);
+				break;
+			case 2:
+				System.out.print("Enter first name and last name of the person to edit the contact: ");
+				firstName = scanner.next();
+				lastName = scanner.next();
+				addressBook.get(addressBookName).editPerson(firstName,lastName);
+				break;
+			case 3:
+				System.out.print("Enter first and last name of the person to delete the contact: ");
+				firstName = scanner.next();
+				lastName = scanner.next();
+   	            addressBook.get(addressBookName).deletePerson(firstName,lastName);
+				break;
+			case 4:
+				System.out.print("Enter first and last name of the person to delete the contact: ");
+				city = scanner.next();
+				state = scanner.next();
+				searchPerson(city,state);
+				break;
+			case 5:
+				System.exit(0);
+			default:
+				System.out.println("Enter a valid option");
+				break;
+			}
+		}
 	}
 
 	public static void main(String[] args) {
