@@ -1,7 +1,9 @@
 import java.util.Scanner;
+import java.util.stream.Collectors;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 public class AddressBook {
@@ -138,6 +140,27 @@ public class AddressBook {
 		}
 	}
 	
+	public void sortedPerson() {
+		List<String> unsortedArrayName = new ArrayList<>();
+		Iterator<PersonInfo> itr = contact.iterator();
+		while(itr.hasNext()) {
+				PersonInfo person = itr.next();
+	            unsortedArrayName.add(person.getFirstName());
+		}
+		List<String> sortedList = unsortedArrayName.stream()
+				.sorted().collect(Collectors.toList());
+		
+		List<PersonInfo> sortedAddressBook = new ArrayList<PersonInfo>();
+		for(String sortedName : sortedList) {
+			for (PersonInfo iterator : contact) {
+				if(sortedName.equals(iterator.getFirstName()))
+					sortedAddressBook.add(iterator);
+			}
+		}
+		System.out.println("sortedList: "+sortedAddressBook);
+	}
+
+	
 	public void UserInput(AddressBook book) {
 		String firstName, lastName, city, state ;
 
@@ -148,12 +171,17 @@ public class AddressBook {
 			System.out.println("3. Delete a person");
 			System.out.println("4. Disply person");
 			System.out.println("5. view peron by city or state");
-			System.out.println("6. Quit");
+			System.out.println("6. sort the person");
+			System.out.println("7. Quit");
 			int choice = scanner.nextInt();
 			
 			System.out.println("Enter name of Address Book");
 		    String addressBookName = scanner.next();
-			addressBook.put(addressBookName, book);
+		    AddressBook address = addressBook.get(addressBookName);
+			if (address == null) {
+				address = new AddressBook();
+				addressBook.put(addressBookName, address);
+			}
 			
 			switch(choice) {
 			case 1:
@@ -181,6 +209,8 @@ public class AddressBook {
 				viewPerson();
 				break;
 			case 6:
+				addressBook.get(addressBookName).sortedPerson();
+			case 7:
 				System.exit(0);
 			default:
 				System.out.println("Enter a valid option");
