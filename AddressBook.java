@@ -117,12 +117,18 @@ public class AddressBook {
 		}
 		switch(choice) {
 			case 1:
+				int count = 0;
 				for(Map.Entry m : personCity.entrySet()) {
+					count = count + 1;
+					System.out.println("The number of contacts by city :"+count);
 					System.out.println(m.getValue()+" "+m.getKey());
 				}
 				break;
 			case 2:
+				int number = 0;
 				for(Map.Entry m : personState.entrySet()) {
+					number = number + 1;
+					System.out.println("The number of contacts by state :"+number);
 					System.out.println(m.getValue()+" "+m.getKey());
 				}
 				break;
