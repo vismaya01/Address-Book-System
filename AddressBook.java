@@ -135,6 +135,7 @@ public class AddressBook {
 				break;
 			default:
 				System.out.println("enter a valid option");
+				viewPerson(address);
 				break;
 		}
 	}
@@ -144,20 +145,88 @@ public class AddressBook {
 		List<String> unsortedArrayName = new ArrayList<>();
 		Iterator<PersonInfo> itr = contact.iterator();
 		while(itr.hasNext()) {
-				PersonInfo person = itr.next();
-	            unsortedArrayName.add(person.getFirstName());
+			PersonInfo person = itr.next();
+            unsortedArrayName.add(person.getFirstName());
 		}
 		List<String> sortedList = unsortedArrayName.stream()
-				.sorted().collect(Collectors.toList());
-		
+			.sorted().collect(Collectors.toList());
+	
 		List<PersonInfo> sortedAddressBook = new ArrayList<PersonInfo>();
 		for(String sortedName : sortedList) {
 			for (PersonInfo iterator : contact) {
 				if(sortedName.equals(iterator.getFirstName()))
 					sortedAddressBook.add(iterator);
-			}
 		}
-		System.out.println("sortedList: "+sortedAddressBook);
+	}
+	System.out.println("sortedList: "+sortedAddressBook);
+	}
+	
+	//sort by city state or zip
+	public void sortContat() {
+		System.out.println("Enter the option");
+		System.out.println("1.city");
+		System.out.println("2.state");
+		System.out.println("3.ZIP");
+		int choice = scanner.nextInt();
+		List<String> unsortedArrayName = new ArrayList<>();
+		Iterator<PersonInfo> itr = contact.iterator();
+		switch(choice) {
+			case 1:
+				while(itr.hasNext()) {
+					PersonInfo person = itr.next();
+		            unsortedArrayName.add(person.getCity());
+				}
+				List<String> sortedListCity = unsortedArrayName.stream()
+					.sorted().collect(Collectors.toList());
+			
+				List<PersonInfo> sortedAddressBookCity = new ArrayList<PersonInfo>();
+				for(String sortedName : sortedListCity) {
+					for (PersonInfo iterator : contact) {
+						if(sortedName.equals(iterator.getCity()))
+							sortedAddressBookCity.add(iterator);
+					}
+				}
+				System.out.println("sortedList: "+sortedAddressBookCity);
+				break;
+			case 2:
+				while(itr.hasNext()) {
+					PersonInfo person = itr.next();
+		            unsortedArrayName.add(person.getState());
+				}
+				List<String> sortedListState = unsortedArrayName.stream()
+					.sorted().collect(Collectors.toList());
+			
+				List<PersonInfo> sortedAddressBookState = new ArrayList<PersonInfo>();
+				for(String sortedName : sortedListState) {
+					for (PersonInfo iterator : contact) {
+						if(sortedName.equals(iterator.getState()))
+						sortedAddressBookState.add(iterator);
+					}
+				}
+				System.out.println("sortedList: "+sortedAddressBookState);
+				break;
+			case 3:
+				while(itr.hasNext()) {
+					PersonInfo person = itr.next();
+		            unsortedArrayName.add(person.getZip());
+				}
+				List<String> sortedListZip = unsortedArrayName.stream()
+						.sorted().collect(Collectors.toList());
+			
+				List<PersonInfo> sortedAddressBookZip = new ArrayList<PersonInfo>();
+				for(String sortedName : sortedListZip) {
+					for (PersonInfo iterator : contact) {
+						if(sortedName.equals(iterator.getZip()))
+							sortedAddressBookZip.add(iterator);
+					}
+				}
+				System.out.println("sortedList: "+sortedAddressBookZip);
+				break;
+			default:
+				System.out.println("Enter a correct option");
+				sortedPerson();
+				break;
+		}
 	}
 
 	
@@ -171,8 +240,9 @@ public class AddressBook {
 			System.out.println("3. Delete a person");
 			System.out.println("4. Disply person");
 			System.out.println("5. view peron by city or state");
-			System.out.println("6. sort the person");
-			System.out.println("7. Quit");
+			System.out.println("6. sort the person name");
+			System.out.println("7. sort the person by city,state or zip");
+			System.out.println("8. Quit");
 			int choice = scanner.nextInt();
 			
 			System.out.println("Enter name of Address Book");
@@ -212,6 +282,9 @@ public class AddressBook {
 				addressBook.get(addressBookName).sortedPerson();
 				break;
 			case 7:
+				addressBook.get(addressBookName).sortContat();
+				break;
+			case 8:
 				System.exit(0);
 			default:
 				System.out.println("Enter a valid option");
