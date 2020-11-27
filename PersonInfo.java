@@ -75,9 +75,9 @@ class PersonInfo {
 
 		//method for displaying person record
         public String toString() {
-                return "[ Name : " + this.firstName + " " + this.lastName +
+                return "Name : " + this.firstName + " " + this.lastName +
                                 "\nAddress : " + this.address +
                                 "\nCity : " + this.city + " , " +"Sate : " + this.state + " , " +"ZIP : " + this.zip +
-                                "\nPhone Number : " + this.phoneNumber + " \nEmail : " + this.email + "]\n";
+                                "\nPhone Number : " + this.phoneNumber + " \nEmail : " + this.email;
         }
 }
